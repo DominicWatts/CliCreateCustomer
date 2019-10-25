@@ -2,13 +2,12 @@
 
 namespace Xigen\CliCreateCustomer\Console\Command;
 
+use Magento\Framework\App\State;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Xigen\CliCreateCustomer\Helper\Customer;
-use Magento\Framework\App\State;
 
 /**
  * Create Command class
@@ -50,8 +49,8 @@ class Create extends Command
      * php bin/magento xigen:clicreatecustomer:create -f "Dave" -l "Smith" -e "dave@example.com" -p "test123" -w 1
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|void|null
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @return int|void|null
      */
     protected function execute(
         InputInterface $input,
