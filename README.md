@@ -16,5 +16,8 @@ Create customer via CLI with supplied parameters
         [-e|--customer-email CUSTOMER-EMAIL]
         [-p|--customer-password CUSTOMER-PASSWORD]
         [-w|--website WEBSITE]
+        [-s|--send-email [SEND-EMAIL]]
 
     php bin/magento xigen:clicreatecustomer:create -f "Dave" -l "Smith" -e "dave@example.com" -p "test123" -w 1
+
+    php bin/magento xigen:clicreatecustomer:create -f "Dave" -l "Smith" -e "dave@example.com" -p "test123" -w 1 -s 1
