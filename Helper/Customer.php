@@ -3,17 +3,17 @@
 namespace Xigen\CliCreateCustomer\Helper;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
-use Magento\Customer\Api\Data\CustomerInterfaceFactory;
 use Magento\Customer\Api\Data\CustomerInterface;
+use Magento\Customer\Api\Data\CustomerInterfaceFactory;
+use Magento\Customer\Model\AccountConfirmation;
+use Magento\Customer\Model\EmailNotificationInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\MailException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Input\Input;
-use Magento\Customer\Model\EmailNotificationInterface;
-use Magento\Customer\Model\AccountConfirmation;
-use Magento\Framework\Exception\MailException;
 
 /**
  * Customer Helper class
@@ -181,7 +181,6 @@ class Customer extends AbstractHelper
                 $redirectUrl,
                 $customer->getStoreId()
             );
-
         } catch (MailException $e) {
             // If we are not able to send a new account email, this should be ignored
             $this->logger->critical($e);
