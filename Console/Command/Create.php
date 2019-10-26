@@ -45,8 +45,10 @@ class Create extends Command
      *   [-e|--customer-email CUSTOMER-EMAIL]
      *   [-p|--customer-password CUSTOMER-PASSWORD]
      *   [-w|--website WEBSITE]
+     *   [-s|--send-email [SEND-EMAIL]]
      *
      * php bin/magento xigen:clicreatecustomer:create -f "Dave" -l "Smith" -e "dave@example.com" -p "test123" -w 1
+     * php bin/magento xigen:clicreatecustomer:create -f "Dave" -l "Smith" -e "dave@example.com" -p "test123" -w 1 -s 1
      * @param InputInterface $input
      * @param OutputInterface $output
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -69,6 +71,9 @@ class Create extends Command
             $output->writeln((string) __("Last name: %1", $customer->getLastname()));
             $output->writeln((string) __("Email: %1", $customer->getEmail()));
             $output->writeln((string) __("Website Id: %1", $customer->getWebsiteId()));
+            if ($input->getOption(Customer::KEY_SENDEMAIL)) {
+                $output->writeln("Sending Email");
+            }
         } else {
             $output->writeln("<error>Problem creating new user</error>");
             if ($e = $this->customerHelper->getException()) {
@@ -89,7 +94,8 @@ class Create extends Command
             new InputOption(Customer::KEY_LASTNAME, '-l', InputOption::VALUE_REQUIRED, '(Required) Last name'),
             new InputOption(Customer::KEY_EMAIL, '-e', InputOption::VALUE_REQUIRED, '(Required) Email'),
             new InputOption(Customer::KEY_PASSWORD, '-p', InputOption::VALUE_REQUIRED, '(Required) Password'),
-            new InputOption(Customer::KEY_WEBSITE, '-w', InputOption::VALUE_REQUIRED, '(Required) Website ID')
+            new InputOption(Customer::KEY_WEBSITE, '-w', InputOption::VALUE_REQUIRED, '(Required) Website ID'),
+            new InputOption(Customer::KEY_SENDEMAIL, '-s', InputOption::VALUE_OPTIONAL, '(1/0) Send email (default 0)')
         ]);
         parent::configure();
     }
